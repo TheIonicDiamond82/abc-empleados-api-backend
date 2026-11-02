@@ -14,5 +14,15 @@
     "C:\\Users\\jesus\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\10.0.0\\npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512",
     "C:\\Users\\jesus\\.nuget\\packages\\scalar.aspnetcore\\2.18.7\\scalar.aspnetcore.2.18.7.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio para el origen https://api.nuget.org/v3/index.json.",
+      "projectPath": "D:\\GitRepos\\abc-empleados-api-backend\\ABCEmpleadosAPI\\ABCEmpleadosAPI.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\GitRepos\\abc-empleados-api-backend\\ABCEmpleadosAPI\\ABCEmpleadosAPI.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

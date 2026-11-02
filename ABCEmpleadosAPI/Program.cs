@@ -1,4 +1,6 @@
 using EmployeesManagement.API.Data;
+using EmployeesManagement.API.Services;          
+using EmployeesManagement.API.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -23,6 +25,11 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
+
+// 4. Registrar servicios de la aplicación
+builder.Services.AddScoped<IDepartmentsService, DepartmentsService>();
+builder.Services.AddScoped<IPositionsService, PositionsService>();
+builder.Services.AddScoped<IEmployeesService, EmployeesService>();
 
 var app = builder.Build();
 

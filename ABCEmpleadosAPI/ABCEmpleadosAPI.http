@@ -1,6 +1,6 @@
-@ABCEmpleadosAPI_HostAddress = http://localhost:5085
+@EmployeesManagement.API_HostAddress = http://localhost:5085
 
-GET {{ABCEmpleadosAPI_HostAddress}}/weatherforecast/
+GET {{EmployeesManagement.API_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
