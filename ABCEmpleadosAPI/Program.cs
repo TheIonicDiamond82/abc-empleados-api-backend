@@ -3,6 +3,7 @@ using EmployeesManagement.API.Services;
 using EmployeesManagement.API.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,16 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IDepartmentsService, DepartmentsService>();
 builder.Services.AddScoped<IPositionsService, PositionsService>();
 builder.Services.AddScoped<IEmployeesService, EmployeesService>();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // Fuerza el formato camelCase en todas las respuestas JSON de la API
+        options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+        
+        // Opcional: maneja enums como strings si usas estatus en texto
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 var app = builder.Build();
 
