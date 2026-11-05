@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ABCEmpleadosAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+125da9f0a866aa9e1df24e653fa1661bacdb2c39")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3087c3fac02b54309404730f2581911c3ab8b1e1")]
 [assembly: System.Reflection.AssemblyProductAttribute("ABCEmpleadosAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ABCEmpleadosAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
