@@ -47,7 +47,7 @@ public class ReportsController : ControllerBase
         var items = employees.Select(e => new
         {
             Id = e.Id,
-            OccurredAt = e.CreatedAt,
+            OccurredAt = (e.Status == "inactive" || e.Status == "terminated") ? e.UpdatedAt : e.CreatedAt,
             Movement = e.Status == "active" ? "Alta" : "Baja",
             Entity = "Empleado",
             Description = $"Empleado: {e.FirstName} {e.LastName} ({e.EmployeeNumber})",
@@ -59,6 +59,9 @@ public class ReportsController : ControllerBase
         var hiresCount = await _context.Employees.CountAsync(e => e.Status == "active");
         var terminationsCount = await _context.Employees.CountAsync(e => e.Status == "inactive" || e.Status == "terminated");
 
+        // Conteo real de empleados activos que han sufrido modificaciones posteriores a su creación
+        var changesCount = await _context.Employees.CountAsync(e => e.Status == "active" && e.UpdatedAt > e.CreatedAt);
+
         var result = new
         {
             Items = items,
@@ -69,7 +72,7 @@ public class ReportsController : ControllerBase
             Summary = new
             {
                 Hires = hiresCount,
-                Changes = 0,
+                Changes = changesCount,
                 Terminations = terminationsCount,
                 Total = totalItems
             }
