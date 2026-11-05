@@ -34,7 +34,7 @@ public class DashboardController : ControllerBase
             .CountAsync(e => (e.Status == "inactive" || e.Status == "terminated") && e.UpdatedAt >= startOfMonth);
 
         // Cambios / Modificaciones del mes (empleados creados antes de este mes, actualizados en este mes y que siguen activos)
-        var changes = await _context.Employees.CountAsync(e => e.Status == "active" && e.UpdatedAt > e.CreatedAt);
+        var changesThisMonth = await _context.Employees.CountAsync(e => e.Status == "active" && e.UpdatedAt > e.CreatedAt && e.UpdatedAt >= startOfMonth);
 
         // Desglose de empleados por departamento para las tarjetas o gráficas
         var departments = await _context.Departments
@@ -61,6 +61,7 @@ public class DashboardController : ControllerBase
             var monthName = new DateTime(m.Year, m.Month, 1).ToString("MMM yyyy");
             var hires = employeesList.Count(e => e.CreatedAt.Year == m.Year && e.CreatedAt.Month == m.Month);
             var terminations = employeesList.Count(e => (e.Status == "inactive" || e.Status == "terminated") && e.UpdatedAt.Year == m.Year && e.UpdatedAt.Month == m.Month);
+            var changes = employeesList.Count(e => e.Status == "active" && e.UpdatedAt > e.CreatedAt && e.UpdatedAt.Year == m.Year && e.UpdatedAt.Month == m.Month);
 
             return new
             {
@@ -80,7 +81,9 @@ public class DashboardController : ControllerBase
                 Departments = totalDepartments,
                 Positions = totalPositions,
                 HiresThisMonth = hiresThisMonth,
-                TerminationsThisMonth = terminationsThisMonth
+                TerminationsThisMonth = terminationsThisMonth,
+                ChangesThisMonth = changesThisMonth
+
             },
             ByDepartment = departments,
             ActivityByMonth = activityByMonth
