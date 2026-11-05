@@ -21,7 +21,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowVueClient", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins(
+            "http://localhost:5173",
+            "https://theionicdiamond82.github.io")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
